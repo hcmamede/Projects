@@ -1,0 +1,15 @@
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\bin\Debug\Typing.exe.config
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\bin\Debug\Typing.exe
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\bin\Debug\Typing.pdb
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing.csprojAssemblyReference.cache
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\App.g.cs
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing_MarkupCompile.cache
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing_MarkupCompile.lref
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing.g.resources
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing.Properties.Resources.resources
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing.csproj.GenerateResource.cache
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing.csproj.CoreCompileInputs.cache
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing.exe
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing.pdb
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing.g.cs
+C:\Users\Programming5\Desktop\Mamede\Locker\Assignment_Typing\typing_game_v2\Typing\Typing\obj\Debug\Typing.baml
