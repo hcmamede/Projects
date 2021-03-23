@@ -1,0 +1,40 @@
+CREATE DATABASE CollegeDataBase;
+GO
+
+USE CollegeDataBase;
+GO
+
+CREATE SCHEMA College;
+GO
+
+CREATE TABLE College.Student
+(
+studentId INT IDENTITY(1,1) PRIMARY KEY,
+firstName NVARCHAR(100) NOT NULL,
+lastName NVARCHAR(100) NOT NULL,
+section NVARCHAR(50) NOT NULL,
+courseId INT NOT NULL,
+feeInfo NVARCHAR(100) NOT NULL,
+phone NVARCHAR(20) NOT NULL,
+emai NVARCHAR(100) NOT NULL,
+
+);
+
+CREATE TABLE College.Staff
+(
+staffId INT IDENTITY(1,1) PRIMARY KEY,
+firstName NVARCHAR(100) NOT NULL,
+lastName NVARCHAR(100) NOT NULL,
+position NVARCHAR(50) NOT NULL,
+department NVARCHAR(100) NOT NULL,
+salary NVARCHAR(100) NOT NULL,
+
+);
+
+CREATE TABLE College.Course
+(
+courseId INT IDENTITY(1,1) PRIMARY KEY,
+courseName NVARCHAR(100) NOT NULL,
+instructorId INT NOT NULL,
+);
+
