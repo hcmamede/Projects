@@ -133,7 +133,9 @@ ADD roomId INT NOT NULL,
 FOREIGN KEY (roomId) REFERENCES College.Room(roomId);
 GO
 
-
+ALTER TABLE College.Booking
+ADD  updateAt DATETIME;
+GO
 
 CREATE VIEW College.BookingWeek
 AS
@@ -148,4 +150,67 @@ GO
 --GO
 
 SELECT * FROM College.BookingWeek;
+GO
+
+
+
+
+--PROCEDURES
+CREATE PROCEDURE College.SelectTodayBooking
+AS
+SELECT * FROM College.Booking WHERE bDate = GETDATE();
+GO
+
+
+
+
+EXEC  College.SelectTodayBooking;
+GO
+
+CREATE TRIGGER College.trg_insert_at
+ON College.Booking
+AFTER INSERT
+AS
+BEGIN
+SET NOCOUNT ON;
+SET ROWCOUNT 0;
+BEGIN TRY
+INSERT INTO College.Booking([bDate],[courseId],[section],[roomId],[updateAt])
+SELECT 
+[bDate],[courseId],[section],[roomId],SYSDATETIME()
+FROM inserted;
+END TRY
+BEGIN CATCH
+	IF XACT_STATE() <> 0
+			ROLLBACK TRANSACTION;
+		THROW;
+	END CATCH
+	END
+GO
+--DROP TRIGGER College.trg_update_at;
+
+CREATE TRIGGER College.trg_update_at
+ON College.Booking
+AFTER UPDATE
+AS
+BEGIN
+SET NOCOUNT ON;
+SET ROWCOUNT 0;
+BEGIN TRY
+UPDATE College.Booking 
+SET bDate = inserted.bDate, 
+    courseId=inserted.courseId,
+	section=inserted.section,
+	roomId=inserted.section,
+	updateAt=SYSDATETIME()
+FROM College.Booking JOIN inserted ON Booking.bookingId=inserted.bookingId;
+
+END TRY
+
+BEGIN CATCH
+	IF XACT_STATE() <> 0
+			ROLLBACK TRANSACTION;
+		THROW;
+	END CATCH
+	END
 GO
