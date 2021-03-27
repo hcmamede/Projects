@@ -1,5 +1,7 @@
 CREATE DATABASE CollegeDataBase;
 GO
+--DROP DATABASE CollegeDataBase;
+--GO
 
 USE CollegeDataBase;
 GO
@@ -13,7 +15,7 @@ studentId INT IDENTITY(1,1) PRIMARY KEY,
 firstName NVARCHAR(100) NOT NULL,
 lastName NVARCHAR(100) NOT NULL,
 section NVARCHAR(50) NOT NULL,
---courseId INT NOT NULL,
+courseId INT NULL,
 feeInfo NVARCHAR(100) NOT NULL,
 phone NVARCHAR(20) NOT NULL,
 email NVARCHAR(100) NOT NULL,
@@ -48,7 +50,8 @@ courseName NVARCHAR(100) NOT NULL,
 );
 GO
 
-
+SELECT * FROM College.Course;
+GO
 
 
 --DROP TABLE College.Course;
@@ -57,8 +60,10 @@ CREATE TABLE College.Booking
 (
 bookingId INT IDENTITY(1,1) PRIMARY KEY,
 --roomId INT NOT NULL ,
+roomId INT NULL,
+FOREIGN KEY (roomId) REFERENCES College.Room(roomId),
 bDate DATETIME NOT NULL,
-courseId INT NOT NULL,
+courseId INT NULL,
 FOREIGN KEY (courseId) REFERENCES College.Course(courseId),
 section NVARCHAR(50) NOT NULL,
 );
@@ -127,6 +132,11 @@ ALTER TABLE College.Course
 ADD instructorId INT NOT NULL,
 FOREIGN KEY (instructorId) REFERENCES College.Staff(staffId);
 GO
+
+ALTER TABLE College.Course
+DROP COLUMN instructorId;
+GO
+
 
 ALTER TABLE College.Booking
 ADD roomId INT NOT NULL,
@@ -214,3 +224,6 @@ BEGIN CATCH
 	END CATCH
 	END
 GO
+
+--INDEX
+
