@@ -66,7 +66,9 @@ insert into College.Booking (roomId, bDate, courseId, section) values (5, '2/8/2
 insert into College.Booking (roomId, bDate, courseId, section) values (3, '1/2/2021', 3, 1);
 
 insert into College.Booking (roomId, bDate, courseId, section) values (3, '3/30/2021', 3, 1);
-
+insert into College.Booking (roomId, bDate, courseId, section) values (3, '3/31/2021', 5, 2);
+insert into College.Booking (roomId, bDate, courseId, section) values (3, '4/1/2021', 2, 3);
+insert into College.Booking (roomId, bDate, courseId, section) values (3, '4/2/2021', 4, 2);
 
 
 --student
