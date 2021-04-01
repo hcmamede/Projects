@@ -17,16 +17,16 @@ positionName NVARCHAR(100) NOT NULL,
 atributes NVARCHAR(500) NOT NULL,
 );
 GO
+SELECT * FROM College.Position;
 
 CREATE TABLE College.Department
 (
 departmentId INT IDENTITY(1,1) PRIMARY KEY,
 departmentName NVARCHAR(200) NOT NULL,
---headId INT  NOT NULL,
---FOREIGN KEY (headId) REFERENCES College.Staff(staffId),
+
 );
 GO
-
+SELECT * FROM College.Department;
 
 
 CREATE TABLE College.Staff
@@ -39,9 +39,13 @@ FOREIGN KEY (positionId) REFERENCES College.Position(positionId),
 departmentId INT  NOT NULL,
 FOREIGN KEY (departmentId) REFERENCES College.Department(departmentId),
 salary NVARCHAR(100) NULL,
+head INT  NOT NULL,
+
 );
 GO
 
+--DROP TABLE College.Staff;
+SELECT * FROM College.Staff;
 
 CREATE TABLE College.Course
 (
@@ -54,6 +58,7 @@ FOREIGN KEY (departmentId) REFERENCES College.Department(departmentId),
 );
 GO
 
+SELECT * FROM College.Course;
 
 CREATE TABLE College.Room
 (
@@ -64,6 +69,8 @@ rDescription NVARCHAR(500) NOT NULL,
 );
 GO
 
+SELECT * FROM College.Room;
+
 
 CREATE TABLE College.Booking
 (
@@ -71,11 +78,15 @@ bookingId INT IDENTITY(1,1) PRIMARY KEY,
 roomId INT NULL,
 FOREIGN KEY (roomId) REFERENCES College.Room(roomId),
 bDate DATE NOT NULL,
+CHECK (bdate>= GETDATE()-1),
 courseId INT NULL,
 FOREIGN KEY (courseId) REFERENCES College.Course(courseId),
 section NVARCHAR(50) NOT NULL,
 );
 GO
+
+SELECT * FROM College.Booking;
+
 --DROP TABLE College.Booking;
 --GO
 CREATE TABLE College.Student
@@ -93,6 +104,7 @@ email NVARCHAR(100) NOT NULL,
 );
 GO
 
+SELECT * FROM College.Student;
 
 
 CREATE TABLE College.Section
@@ -104,20 +116,23 @@ sectionEndTime TIME NOT NULL,
 );
 GO
 
+SELECT * FROM College.Section;
+
+
+
+--INDEX
+
+CREATE NONCLUSTERED INDEX IX_date
+ON College.Booking (bDate ASC);
+GO
+
+
 --Constraints
-
-
 
 ALTER TABLE College.Student
 	ADD CONSTRAINT df_feeInfo
 	DEFAULT 'no info' FOR feeInfo;
 GO
-
-
-
-
-
-
 
 
 
@@ -128,70 +143,8 @@ GO
 
 
 
-CREATE VIEW College.BookingWeek
-AS
-SELECT College.Booking.bookingId, College.Course.courseName, College.Room.rName, College.Section.section
-FROM College.Booking
-INNER JOIN College.Course ON College.Course.courseId= College.Booking.courseId
-INNER JOIN College.Room ON College.Room.roomId = College.Booking.roomId
-INNER JOIN College.Section ON College.Section.sectionId=College.Booking.section
-WHERE  (bDate >= GETDATE()-1) AND (bDate <= GETDATE()+7);
-GO
 
 
-SELECT * FROM College.BookingWeek;
-GO
-
-
-
-
-CREATE VIEW College.BookingAll
-AS
-SELECT College.Booking.bDate, College.Course.courseName, College.Room.rName, College.Section.section
-FROM College.Booking
-INNER JOIN College.Course ON College.Course.courseId= College.Booking.courseId
-INNER JOIN College.Room ON College.Room.roomId = College.Booking.roomId
-INNER JOIN College.Section ON College.Section.sectionId=College.Booking.section;
-GO
-SELECT * FROM College.BookingAll;
-GO
-
-
---PROCEDURES
-
-CREATE PROCEDURE SelectScheduledRoom @roomId INT
-AS
-SELECT College.Booking.bDate, College.Course.courseName, College.Room.rName, College.Section.section 
-FROM College.Booking 
-INNER JOIN College.Course ON College.Course.courseId= College.Booking.courseId
-INNER JOIN College.Room ON College.Room.roomId = College.Booking.roomId
-INNER JOIN College.Section ON College.Section.sectionId=College.Booking.section
-WHERE College.Booking.roomId=@roomId;
-GO
-
-
-
-EXEC SelectScheduledRoom @roomId='2';
-
-
-
-CREATE PROCEDURE College.SelectTodayBooking
-AS
-SELECT College.Booking.bDate, College.Course.courseName, College.Room.rName, College.Section.section 
-FROM College.Booking 
-INNER JOIN College.Course ON College.Course.courseId= College.Booking.courseId
-INNER JOIN College.Room ON College.Room.roomId = College.Booking.roomId
-INNER JOIN College.Section ON College.Section.sectionId=College.Booking.section
-WHERE College.Booking.bDate> GETDATE()-1 AND College.Booking.bDate< GETDATE();
-GO
-DROP PROCEDURE College.SelectTodayBooking;
-GO
-
-EXEC  College.SelectTodayBooking;
-GO
-
-SELECT * FROM College.Booking;
-GO
 
 --TRIGGER
 
@@ -243,14 +196,97 @@ BEGIN CATCH
 	END
 GO
 
---INDEX
-
-CREATE NONCLUSTERED INDEX IX_date
-ON College.Booking (bDate ASC);
-GO
 
 --DROP INDEX IX_date ON College.Booking;
 --GO
+
+
+
+--VIEWS
+
+CREATE VIEW College.BookingWeek
+AS
+SELECT College.Booking.bookingId, College.Course.courseName, College.Room.rName, College.Section.section
+FROM College.Booking
+INNER JOIN College.Course ON College.Course.courseId= College.Booking.courseId
+INNER JOIN College.Room ON College.Room.roomId = College.Booking.roomId
+INNER JOIN College.Section ON College.Section.sectionId=College.Booking.section
+WHERE  (bDate >= GETDATE()-1) AND (bDate <= GETDATE()+7);
+GO
+
+
+SELECT * FROM College.BookingWeek;
+GO
+
+SELECT * FROM College.Booking;
+
+
+CREATE VIEW College.BookingAll
+AS
+SELECT College.Booking.bDate, College.Course.courseName, College.Room.rName, College.Section.section
+FROM College.Booking
+INNER JOIN College.Course ON College.Course.courseId= College.Booking.courseId
+INNER JOIN College.Room ON College.Room.roomId = College.Booking.roomId
+INNER JOIN College.Section ON College.Section.sectionId=College.Booking.section;
+GO
+SELECT * FROM College.BookingAll;
+GO
+SELECT * FROM College.Booking;
+
+
+--PROCEDURES
+
+CREATE PROCEDURE SelectScheduledRoom @roomId INT
+AS
+SELECT College.Booking.bDate, College.Course.courseName, College.Room.rName, College.Section.section 
+FROM College.Booking 
+INNER JOIN College.Course ON College.Course.courseId= College.Booking.courseId
+INNER JOIN College.Room ON College.Room.roomId = College.Booking.roomId
+INNER JOIN College.Section ON College.Section.sectionId=College.Booking.section
+WHERE College.Booking.roomId=@roomId;
+GO
+
+
+
+EXEC SelectScheduledRoom @roomId='2';
+
+
+
+CREATE PROCEDURE College.SelectTodayBooking
+AS
+SELECT DISTINCT College.Booking.bDate, College.Course.courseName, College.Room.rName, College.Section.section 
+FROM College.Booking 
+INNER JOIN College.Course ON College.Course.courseId= College.Booking.courseId
+INNER JOIN College.Room ON College.Room.roomId = College.Booking.roomId
+INNER JOIN College.Section ON College.Section.sectionId=College.Booking.section
+WHERE College.Booking.bDate> GETDATE()-1 AND College.Booking.bDate< GETDATE();
+GO
+
+--DROP PROCEDURE College.SelectTodayBooking;
+--GO
+
+EXEC  College.SelectTodayBooking;
+GO
+
+
+
+CREATE PROCEDURE College.DepartmentHead
+AS
+SELECT DISTINCT College.Department.departmentName, College.Staff.firstName, College.Staff.lastName, College.Position.positionName, College.Staff.head 
+FROM College.Staff 
+INNER JOIN College.Department ON College.Department.departmentId= College.Staff.departmentId
+INNER JOIN College.Position ON College.Position.positionId = College.Staff.positionId
+WHERE College.Staff.head = 1;
+GO
+
+EXEC College.DepartmentHead;
+GO
+SELECT * FROM College.Booking;
+GO
+
+
+
+
 
 
 SELECT * FROM College.Booking;

@@ -15,22 +15,24 @@ insert into College.Department(departmentName) values ('Information technology')
 insert into College.Department(departmentName) values ('Business');
 insert into College.Department(departmentName) values ('Tourism');
 
+
+
 --Staff
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Cindra', 'Tigner', 1, 4, '$4272.97');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Dacie', 'MacGee', 2, 2, '$2021.87');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Sheila', 'Elintune', 2, 4, '$4804.71');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Hoyt', 'Dragoe', 1, 2, '$5245.33');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Tatiana', 'Bowstead', 1, 1, '$4750.85');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Mirella', 'Brearley', 1, 1, '$4643.79');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Nicoline', 'Coppen', 2, 3, '$3992.99');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Winne', 'Beaument', 2, 2, '$2079.12');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Matthiew', 'Hacon', 1, 3, '$5975.83');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Sydney', 'Jagg', 1, 1, '$3362.34');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Carlos', 'Walsh', 1, 1, '$4567.51');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Burg', 'Symondson', 3, 3, '$4994.40');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Rey', 'Aspell', 3, 4, '$4316.41');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Shalna', 'Spanton', 1, 4, '$3403.35');
-insert into College.Staff (firstName, lastName, positionId, departmentId, salary) values ('Valentin', 'Rens', 3, 2, '$3537.44');
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Cindra', 'Tigner', 1, 4, '$4272.97',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Dacie', 'MacGee', 2, 2, '$2021.87',1);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Sheila', 'Elintune', 2, 4, '$4804.71',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Hoyt', 'Dragoe', 1, 2, '$5245.33',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Tatiana', 'Bowstead', 1, 1, '$4750.85',1);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Mirella', 'Brearley', 1, 1, '$4643.79',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Nicoline', 'Coppen', 2, 3, '$3992.99',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Winne', 'Beaument', 2, 2, '$2079.12',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Matthiew', 'Hacon', 1, 3, '$5975.83',1);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Sydney', 'Jagg', 1, 1, '$3362.34',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Carlos', 'Walsh', 1, 1, '$4567.51',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Burg', 'Symondson', 3, 3, '$4994.40',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Rey', 'Aspell', 3, 4, '$4316.41',0);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Shalna', 'Spanton', 1, 4, '$3403.35',1);
+insert into College.Staff (firstName, lastName, positionId, departmentId, salary,head) values ('Valentin', 'Rens', 3, 2, '$3537.44',0);
 
 
 --Course
@@ -39,6 +41,11 @@ insert into College.Course (courseName, instructorId, departmentId) values ('Bus
 insert into College.Course (courseName, instructorId, departmentId) values ('Business Management& Entrepreneurship Diploma',12,3);
 insert into College.Course (courseName, instructorId, departmentId) values ('Programmer Analyst Diploma',4,2);
 insert into College.Course (courseName, instructorId, departmentId) values ('Travel & Tourism Diploma',14,4);
+
+
+insert into College.Course (courseName, instructorId, departmentId) values ('Computerized Accounting Diploma',6,1);
+insert into College.Course (courseName, instructorId, departmentId) values ('Network Engineering Diploma',4,2);
+
 --Room
 
 insert into College.Room (rName, occupation, rDescription) values ('Adam Smith', 15, 'Class room');
@@ -55,21 +62,24 @@ insert into College.Section (section, sectionInitialTime, sectionEndTime) values
 --Booking
 
 insert into College.Booking (roomId, bDate, courseId, section) values (1, '7/11/2021', 1, 1);
-insert into College.Booking (roomId, bDate, courseId, section) values (2, '2/24/2021', 2, 3);
+insert into College.Booking (roomId, bDate, courseId, section) values (2, '6/24/2021', 2, 3);
 insert into College.Booking (roomId, bDate, courseId, section) values (3, '11/26/2021', 3, 2);
-insert into College.Booking (roomId, bDate, courseId, section) values (4, '2/18/2021', 4, 1);
+insert into College.Booking (roomId, bDate, courseId, section) values (4, '4/18/2021', 4, 1);
 insert into College.Booking (roomId, bDate, courseId, section) values (3, '10/25/2021', 5, 3);
-insert into College.Booking (roomId, bDate, courseId, section) values (2, '2/11/2021', 4, 2);
+insert into College.Booking (roomId, bDate, courseId, section) values (2, '5/11/2021', 4, 2);
 insert into College.Booking (roomId, bDate, courseId, section) values (1, '6/23/2021', 2, 3);
 insert into College.Booking (roomId, bDate, courseId, section) values (4, '10/29/2021', 1, 1);
-insert into College.Booking (roomId, bDate, courseId, section) values (5, '2/8/2021', 5, 3);
-insert into College.Booking (roomId, bDate, courseId, section) values (3, '1/2/2021', 3, 1);
+insert into College.Booking (roomId, bDate, courseId, section) values (5, '4/8/2021', 5, 3);
+insert into College.Booking (roomId, bDate, courseId, section) values (3, '5/2/2021', 3, 1);
 
-insert into College.Booking (roomId, bDate, courseId, section) values (3, '3/30/2021', 3, 1);
-insert into College.Booking (roomId, bDate, courseId, section) values (3, '3/31/2021', 5, 2);
+insert into College.Booking (roomId, bDate, courseId, section) values (3, '4/30/2021', 3, 1);
+insert into College.Booking (roomId, bDate, courseId, section) values (3, '4/1/2021', 5, 2);
 insert into College.Booking (roomId, bDate, courseId, section) values (3, '4/1/2021', 2, 3);
 insert into College.Booking (roomId, bDate, courseId, section) values (3, '4/2/2021', 4, 2);
 
+
+insert into College.Booking (roomId, bDate, courseId, section) values (3, '3/31/2021', 4, 2);
+insert into College.Booking (roomId, bDate, courseId, section) values (3, '3/30/2021', 4, 2);
 
 --student
 insert into College.Student (firstName, lastName, section, courseId, feeInfo, phone, email) values ('Carroll', 'Winfield', 1, 4, '$9687.94', '605-356-2103', 'cwinfield0@woothemes.com');
